@@ -27,10 +27,10 @@ Note:  Generators are usually run using the globally-installed `sails` CLI (comm
 ### How to setup
 
 1. Install Sail
-    sudo npm install -g sails
+    + sudo npm install -g sails
 2. Create new app
-    sails new test-project
-    choose number 1
+    + sails new test-project
+    + choose number 1
 3. Run app
     cd test-project
     sails lift
