@@ -39,7 +39,7 @@ Note:  Generators are usually run using the globally-installed `sails` CLI (comm
     + sails generate api user
     + sails generate api profile
 5. Create a user data
-    + [http://localhost:1337/user/create?username=khang.nguyen&password=12345&email=khang.nguyen@banvien.com]
+    + [(http://localhost:1337/user/create?username=khang.nguyen&password=12345&email=khang.nguyen@banvien.com)]
     + [http://localhost:1337/profile/create?userid=2&firstname=Khang&lastname=Nguyen&gender=male&dob=1984-03-06&address=HCMC]
 6. View list data
     + http://localhost:1337/user
