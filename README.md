@@ -45,7 +45,7 @@ Note:  Generators are usually run using the globally-installed `sails` CLI (comm
     + http://localhost:1337/user
     + http://localhost:1337/profile
 7. Edit data
-    + [http://localhost:1337/profile/update/1?address=HCM City](http://localhost:1337/profile/update/1?address=HCM City)
+    + http://localhost:1337/profile/update/1?address=HCM City
 8. Delete data
     + http://localhost:1337/user/destroy/1
 9. Create mongo database
