@@ -15,19 +15,41 @@ module.exports = {
       password: req.param("password")
     };
 
-    return User.create(_newUser).then(function (_user) {
-      console.log("User created: " + JSON.stringify(_user));
-      return res.redirect("/user");
-    }).catch(function (err) {
-      console.error(err);
-      console.error(JSON.stringify(err));
-      return res.view("/user/new", {
-        contact: _user,
-        status: 'Error',
-        statusDescription: err,
-        title: 'Add a new user'
+    if(req.param("id") != null){
+      // update
+      return User.update({id: req.param("id")}, {
+        username: req.param("username"),
+        email: req.param("email"),
+        password: req.param("password")
+      }).then(function (_user) {
+        return res.redirect("/user/find-all");
+      }).catch(function (err) {
+        console.error(err);
+        return res.view("/user/new", {
+          contact: _user,
+          status: 'Error',
+          statusDescription: err,
+          title: 'Update user fail'
+        });
       });
-    });
+    }else{
+      // Create New
+      return User.create(_newUser).then(function (_user) {
+        console.log("User created: " + JSON.stringify(_user));
+        return res.redirect("/user/find-all");
+      }).catch(function (err) {
+        console.error(err);
+        console.error(JSON.stringify(err));
+        return res.view("/user/new", {
+          contact: _user,
+          status: 'Error',
+          statusDescription: err,
+          title: 'Add a new user'
+        });
+      });
+    }
+
+
   },
 
   findAll: function(req, res){
@@ -68,31 +90,24 @@ module.exports = {
       console.log(err);
     });
     if (deleteUser.length === 0) {
-      console.log('No user found with id: ' + req.param("id"));
+      console.log(err);
+      return res.view('500', {error: "Sorry, no User found with id - " + req.param("id")});
     } else {
       console.log('Deleted user with id: ', req.param("id"));
     }
     return res.redirect("/user/find-all");
+  },
 
-
-    /*return User.find().where({id: req.param("id")}).then(function (_user) {
-      if (_user && _user.length > 0) {
-        console.log(_user[0]);
-        _user[0].destroy().then(function (_user) {
-          console.log("Deleted successfully!!! _user = " + _user);
-          return res.redirect("/user/find-all");
-        }).catch(function (err) {
-          console.error(err);
-          return res.redirect("/user/find-all");
-        });
-      } else {
-        return res.view('500', {error: "Sorry, no User found with id - " + req.param("id")});
-      }
-    }).catch(function (err) {
-      console.log(err);
-      return res.view('500', {error: "Sorry, no User found with id - " + req.param("id")});
-    });*/
-
+  edit: function(req, res){
+    console.log("Inside edit..............");
+    console.log(req.param("id"));
+    User.find({id: req.param("id")}).then(function(users){
+      return res.view("user/new", {
+        user: users[0],
+        status: 'OK',
+        title: 'Edit user with id = ' + req.param("id")
+      });
+    });
 
   },
 };

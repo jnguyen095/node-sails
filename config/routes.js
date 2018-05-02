@@ -39,6 +39,10 @@ module.exports.routes = {
     controller: 'UserController',
     action: "delete",
   },
+  'get /user/edit': {
+    controller: 'UserController',
+    action: "edit",
+  },
 
   'get /user/find-all':{
     controller: 'UserController',
