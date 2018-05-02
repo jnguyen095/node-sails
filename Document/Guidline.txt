@@ -24,4 +24,6 @@
     1. Install adapter: npm install sails-mongo --save
     2. Create a connection in datastores.js
     3. Add data connection into each models or just add [datastore: 'sailsMongoDBServer'] into config/models.js
-
+10. Create new api
+    1. sails generate action user/findById
+    2. 'config/routes.js': 'GET /api/v1/user/find-by-id': { action: 'user/find-by-id' },

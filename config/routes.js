@@ -27,6 +27,23 @@ module.exports.routes = {
   '/': {
     view: 'pages/homepage'
   },
+  'get /user/new':{
+    controller: 'UserController',
+    action: 'new'
+  },
+  'post /user/new':{
+    controller: 'UserController',
+    action: 'create'
+  },
+  'get /user/delete': {
+    controller: 'UserController',
+    action: "delete",
+  },
+
+  'get /user/find-all':{
+    controller: 'UserController',
+    action: 'findAll'
+  }
 
   /***************************************************************************
   *                                                                          *

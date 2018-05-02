@@ -1,0 +1,28 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>UserName</th>
+    <th>Email</th>
+    <th>Password</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <%
+  for(var _index = 0; _index < users.length; _index++) {
+    var _user = users[_index];
+  %>
+
+  <tr>
+    <td><a href="/user/<%=_user.id%>"><%=_user.id%></a></td>
+    <td><%=_user.username%></td>
+    <td><%=_user.email%></td>
+    <td><%=_user.password%></td>
+    <td>
+      <a href="/user/delete?id=<%=_user.id%>" class="btn btn-danger" >X</a>
+    </td>
+  </tr>
+  <%}%>
+  </tbody>
+</table>
