@@ -15,8 +15,9 @@ module.exports = {
       password: req.param("password")
     };
 
-    if(req.param("id") != null){
+    if(req.param("id") != null && req.param("id").length > 0){
       // update
+      console.log("Inside update");
       return User.update({id: req.param("id")}, {
         username: req.param("username"),
         email: req.param("email"),
@@ -34,6 +35,7 @@ module.exports = {
       });
     }else{
       // Create New
+      console.log("Inside create");
       return User.create(_newUser).then(function (_user) {
         console.log("User created: " + JSON.stringify(_user));
         return res.redirect("/user/find-all");
